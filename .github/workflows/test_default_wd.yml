@@ -1,0 +1,53 @@
+name: Test Default Working Dir
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clone_default:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Print directory
+        run: |
+          echo -e "GITHUB_WORKSPACE \n${GITHUB_WORKSPACE}\n"
+          echo -e "github.workspace:\n${{ github.workspace }}\n"
+          echo -e "pwd:\n $(pwd)\n"
+          ls -als
+          find /home/runner/work/test_action -name '.git'
+
+      - name: Clone (Default)
+        uses: actions/checkout@v1
+
+      - name: Print directory
+        run: |
+          echo -e "GITHUB_WORKSPACE \n${GITHUB_WORKSPACE}\n"
+          echo -e "github.workspace:\n${{ github.workspace }}\n"
+          echo -e "pwd:\n $(pwd)\n"
+          ls -als
+          find /home/runner/work/test_action -name '.git'
+
+  clone_other_path:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Print directory
+        run: |
+          echo -e "GITHUB_WORKSPACE \n${GITHUB_WORKSPACE}\n"
+          echo -e "github.workspace:\n${{ github.workspace }}\n"
+          echo -e "pwd:\n $(pwd)\n"
+          ls -als
+          find /home/runner/work/test_action -name '.git'
+
+      - name: Clone (other_path)
+        uses: actions/checkout@v1
+        with:
+          path: repo-local/test_action_repo
+
+      - name: Print directory
+        run: |
+          echo -e "GITHUB_WORKSPACE \n${GITHUB_WORKSPACE}\n"
+          echo -e "github.workspace:\n${{ github.workspace }}\n"
+          echo -e "pwd:\n $(pwd)\n"
+          ls -als
+          find /home/runner/work/test_action -name '.git'
+
+
