@@ -46,7 +46,22 @@ jobs:
       - name: Clone (other_path)
         uses: actions/checkout@v1
         with:
-          path: repo-local/test_action_repo
+          path: repo-local/test_action_repo1
+
+      - name: Print directory
+        run: |
+          echo -e "GITHUB_WORKSPACE \n${GITHUB_WORKSPACE}\n"
+          echo -e "github.workspace:\n${{ github.workspace }}\n"
+          echo -e "pwd:\n $(pwd)\n"
+          echo "ls"
+          ls -als
+          echo "find"
+          find /home/runner/work/test_action -name '.git'
+
+      - name: Clone (other_path)
+        uses: actions/checkout@v1
+        with:
+          path: repo-local/test_action_repo2
 
       - name: Print directory
         run: |
